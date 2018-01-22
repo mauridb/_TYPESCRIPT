@@ -1,0 +1,28 @@
+What is typescript?
+- need to be compiled in a shell script
+- is a strongly typed language you have to be specific whic type for variable
+- is a wrapper of js 
+- browser can't run typescript
+
+
+Why typescript and how to use it?
+- types feature
+
+
+Installing typescript
+- node and npm installed
+	- sudo npm -g install typescript
+
+
+Using typescript
+- tsc to compile .ts scripts
+
+
+Setting up course workspaces
+- npm init
+- npm install <dependency> --save-dev
+- add script in package.json
+- compile with tsc script.ts
+
+
+
