@@ -1,96 +1,73 @@
-// string
-var myName = 'Maurizio';
-// myName = 28;
-//number
-var myAge = 25; // int or float are the same
-// let myAge = 'Mauri';
-//boolean
-var hasHobbies = false;
-// hasHobbies = 1;
-// assign types
-var myRealAge;
-myRealAge = 25;
-// myRealAge = '25';
-// array
-var hobbies = ['play chess', 'coding'];
-hobbies = [100]; // before we have only an array of string but with : any[] we can have multiple type in array list
-// hobbies = 100; // this is not an array so error
-console.log(typeof hobbies);
-// tuples
-var address = ['superstreet', 89]; // the combination must be the same
-// enum
-var Color;
-(function (Color) {
-    Color[Color["Gray"] = 0] = "Gray";
-    Color[Color["Green"] = 100] = "Green";
-    Color[Color["Blue"] = 2] = "Blue"; // 2
-})(Color || (Color = {}));
-var myColor = Color.Blue;
-console.log(myColor);
-// any NB: try to figure out which type assign to variable, only at the end use 'any'
-var car = 'bmw';
-console.log(car);
-car = { brand: 'bmw', series: 3 };
-console.log(car);
-function returnMyName() {
-    return myName;
+// let and const
+console.log('LET & CONST');
+var variable = "test";
+console.log(variable);
+variable = "another value";
+console.log(variable);
+var maxLevels = 100; // to create immutable data structures
+console.log(maxLevels);
+// maxLevels = 30; // won't work
+// block scope
+function reset() {
+    // console.log(variable);
+    var variable = null;
+    console.log(variable);
 }
-console.log(returnMyName());
-// void NB: the function should not return anything
-function sayHello() {
-    console.log('hello');
-}
-// function types 
-function multiply(value1, value2) {
-    return value1 * value2;
-}
-// console.log(multiply(2, 'mauri')); // NB: int * string return a not a number, NOT AN ERROR
-console.log(multiply(2, 46));
-//function type
-var myMultiply; // use to redefine hold types.. NB: is not a function, is a function type
-// myMultiply = sayHello;
-// myMultiply();
-myMultiply = multiply;
-console.log(myMultiply(356, 765));
-// objects
-var userData = {
-    name: "mauri",
-    age: 25
+reset();
+console.log(variable);
+// arrow functions
+console.log('ARROW FUNCTIONS');
+var addNumbers = function (number1, number2) {
+    return number1 + number2;
 };
-// userData = {
-//     a: 'hello',
-//     b: 24
-// };
-// complex object
-var complex = {
-    data: [100, 3, 5],
-    output: function (all) {
-        return this.data;
+console.log(addNumbers(10, 54));
+// Example arraw function
+var multiplyFunction = function (num1, num2) { return num1 * num2; };
+console.log(multiplyFunction(34, 54));
+var great = function () {
+    console.log('hello world');
+};
+great();
+// another arraw function
+var greetFriend = function (message) { return console.log(message); };
+greetFriend('hi man i am learning typescript');
+// default params
+console.log('DEFAULT PARAMS');
+var countdown = function (start, end) {
+    if (start === void 0) { start = 10; }
+    if (end === void 0) { end = start - 5; }
+    while (start > end) {
+        --start;
+        console.log(start);
     }
+    console.log('Done!', start);
 };
-var complex2 = {
-    data: [100, 3, 5],
-    output: function (all) {
-        return this.data;
+countdown();
+// rest and spread
+console.log('REST & SPREAD');
+var numbers = [1, 45, 65, 23, -6];
+console.log(Math.max.apply(Math, numbers)); // using spread operator '...'
+console.log(Math.max(12, 34, 99));
+function makeArray(name) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
     }
-};
-// union types
-var myRealRealAge = 27;
-// myRealRealAge = true;
-myRealRealAge = "27";
-// check types
-var finalValue = 21;
-if (typeof finalValue == "number") {
-    console.log('finalvalue is a number');
+    return args;
 }
-// never
-function neverReturns() {
-    throw new Error('an Error!!!');
-}
-// nullable types
-var canBeNull = 12;
-canBeNull = null;
-var canAlsoBeNull;
-canAlsoBeNull = null;
-var canThisBeAny = null;
-canThisBeAny = 12;
+console.log(makeArray('max', 1, 23, 45));
+// destructuring arrays
+console.log('DESTRUCTURING');
+var myHobbies = ['chess', 'cooking'];
+// const hobby1 = myHobbies[0];
+// const hobby2 = myHobbies[1]; 
+var hobby1 = myHobbies[0], hobby2 = myHobbies[1];
+console.log(hobby1, hobby2);
+// destructuring objects
+var userData = { username: 'mauridb', age: 25 };
+var myName = userData.username, myAge = userData.age;
+console.log(myName, myAge);
+// template literals
+var userName = 'mauridb';
+var greeting = "this is header!\ni am " + userName + "\n";
+console.log(greeting);
