@@ -1,85 +1,65 @@
-// let and const
-console.log('LET & CONST');
+class Person {
+    // class body
+    name: string;           // as a public properties
+    private role: string;
+    protected age: number = 25;
 
-let variable = "test";
-console.log(variable);
-variable = "another value";
-console.log(variable);
-
-const maxLevels = 100;          // to create immutable data structures
-console.log(maxLevels);
-// maxLevels = 30; // won't work
-
-// block scope
-function reset(){
-    // console.log(variable);
-    let variable = null;
-    console.log(variable);
-}
-reset()
-console.log(variable);
-
-// arrow functions
-console.log('ARROW FUNCTIONS');
-const addNumbers = function(number1: number, number2: number): number{
-    return number1 + number2;
-}
-console.log(addNumbers(10,54));
-
-// Example arraw function
-const multiplyFunction = (num1: number, num2: number) => num1 * num2; 
-console.log(multiplyFunction(34, 54));
-
-const great = () => {
-    console.log('hello world');
-}
-great();
-
-// another arraw function
-const greetFriend = message => console.log(message);
-greetFriend('hi man i am learning typescript');
-
-// default params
-console.log('DEFAULT PARAMS');
-const countdown = (start: number = 10, end: number = start -5): void => {
-    while (start > end) {
-        --start;
-        console.log(start);
+    constructor(name: string, public username: string){
+        this.name = name;
+        this.username = username;
     }
-    console.log('Done!', start);
-    
+
+    printAge() {
+        console.log(this.age);
+        // this.setRole('Python developer lover!') // inside your class you can access
+    }
+
+    private setRole(role: string){
+        this.role = role;
+    }
+
 }
-countdown();
 
-// rest and spread
-console.log('REST & SPREAD');
-const numbers: number[] = [1, 45, 65, 23, -6];
-console.log(Math.max(...numbers)); // using spread operator '...'
-console.log(Math.max(12, 34, 99));
+// const person = new Person('maurizio', 'mauridb');
+// console.log(person);
+// console.log(person.printAge());
+// console.log(person.setRole('Angular Developer')); // won't work because is outside the own class
 
-function makeArray(...args: number[]) {
-    return args;
+// inheritance
+class PythonDeveloper extends Person{
+    name = 'Maurizio'
+
+    constructor(username: string){
+        super('Maurizio', username);
+    }
 }
-console.log(makeArray(1, 23, 45));
+const mauridb = new PythonDeveloper('sherlock');
+console.log(mauridb);
 
-// destructuring arrays
-console.log('DESTRUCTURING');
-const myHobbies = ['chess', 'cooking'];
-// const hobby1 = myHobbies[0];
-// const hobby2 = myHobbies[1]; 
-const [hobby1, hobby2] = myHobbies;
-console.log(hobby1, hobby2);
+// getters and setters
+class Plant {
+    private _species: string = "Default";
+
+    get species(){
+        return this._species;
+    }
+
+    set species(value: string){
+        if (value.length > 3) {
+            this._species = value;
+        }else{
+            this._species = "Default";
+        }
+    }
+}
+
+let plant = new Plant();
+console.log(plant.species);
+plant.species = 'ab'
+console.log(plant.species);
+plant.species = 'Green plant!!'
+console.log(plant.species);
 
 
-// destructuring objects
-const userData = {username: 'mauridb', age: 25};
-const {username: myName, age: myAge} = userData;
-console.log(myName, myAge);
 
-// template literals
-const userName = 'mauridb'
-const greeting = `this is header!
-i am ${userName},
-really cool!!!
-`;
-console.log(greeting);
+
