@@ -48,14 +48,14 @@ console.log('REST & SPREAD');
 var numbers = [1, 45, 65, 23, -6];
 console.log(Math.max.apply(Math, numbers)); // using spread operator '...'
 console.log(Math.max(12, 34, 99));
-function makeArray(name) {
+function makeArray() {
     var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
     }
     return args;
 }
-console.log(makeArray('max', 1, 23, 45));
+console.log(makeArray(1, 23, 45));
 // destructuring arrays
 console.log('DESTRUCTURING');
 var myHobbies = ['chess', 'cooking'];
@@ -69,5 +69,5 @@ var myName = userData.username, myAge = userData.age;
 console.log(myName, myAge);
 // template literals
 var userName = 'mauridb';
-var greeting = "this is header!\ni am " + userName + "\n";
+var greeting = "this is header!\ni am " + userName + ",\nreally cool!!!\n";
 console.log(greeting);

@@ -57,10 +57,10 @@ const numbers: number[] = [1, 45, 65, 23, -6];
 console.log(Math.max(...numbers)); // using spread operator '...'
 console.log(Math.max(12, 34, 99));
 
-function makeArray(name: string, ...args: number[]) {
+function makeArray(...args: number[]) {
     return args;
 }
-console.log(makeArray('max', 1, 23, 45));
+console.log(makeArray(1, 23, 45));
 
 // destructuring arrays
 console.log('DESTRUCTURING');
