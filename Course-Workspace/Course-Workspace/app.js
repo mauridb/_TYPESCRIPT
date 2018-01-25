@@ -64,5 +64,63 @@ var Plant = /** @class */ (function () {
 }());
 var plant = new Plant();
 console.log(plant.species);
-plant.species = 'abic';
+plant.species = 'ab';
 console.log(plant.species);
+plant.species = 'Green plant!!';
+console.log(plant.species);
+// static properties & methods          // static method no need to be instantiate as class
+var Helpers = /** @class */ (function () {
+    function Helpers() {
+    }
+    Helpers.calcCircumference = function (diameter) {
+        return this.PI * diameter;
+    };
+    ;
+    Helpers.PI = 3.14;
+    return Helpers;
+}());
+console.log(34 * Helpers.PI);
+console.log(Helpers.calcCircumference(34));
+//abtract classes
+var Project = /** @class */ (function () {
+    function Project() {
+        this.projectName = "Default";
+        this.budget = 1000;
+    }
+    Project.prototype.calcBudget = function () {
+        return this.budget * 2;
+    };
+    return Project;
+}());
+var ITProject = /** @class */ (function (_super) {
+    __extends(ITProject, _super);
+    function ITProject() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    // error while abstracts logic not implemented
+    ITProject.prototype.changeName = function (name) {
+        this.projectName = name;
+    };
+    return ITProject;
+}(Project));
+var newProject = new ITProject();
+console.log(newProject);
+newProject.changeName('pythonProject');
+console.log(newProject);
+// private constructor
+var OnlyOne = /** @class */ (function () {
+    function OnlyOne(name) {
+        this.name = name;
+    }
+    OnlyOne.getInstance = function () {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne('the only one');
+        }
+        return OnlyOne.instance;
+    };
+    return OnlyOne;
+}());
+// let wrong = new OnlyOne('only one');
+var right = OnlyOne.getInstance();
+console.log(right.name);
+// read only properties

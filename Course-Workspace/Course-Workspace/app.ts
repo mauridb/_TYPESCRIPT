@@ -60,6 +60,59 @@ console.log(plant.species);
 plant.species = 'Green plant!!'
 console.log(plant.species);
 
+// static properties & methods          // static method no need to be instantiate as class
+class Helpers {
+    static PI: number = 3.14;
+    static calcCircumference(diameter: number): number {
+        return this.PI * diameter;
+    };
+}
+console.log(34 * Helpers.PI);
+console.log(Helpers.calcCircumference(34));
 
+//abtract classes
+abstract class Project{
+    projectName: string = "Default";
+    budget: number = 1000;
 
+    abstract changeName(name: string): void;
 
+    calcBudget(){
+        return this.budget * 2;
+    }
+}
+
+class ITProject extends Project{
+    // error while abstracts logic not implemented
+    changeName(name: string): void {
+        this.projectName = name;
+    }
+}
+
+let newProject = new ITProject()
+console.log(newProject);
+newProject.changeName('pythonProject')
+console.log(newProject);
+
+// private constructor
+class OnlyOne {
+    private static instance: OnlyOne;
+    public readonly name: string;
+
+    private constructor(name: string){
+        this.name = name;
+    }
+
+    static getInstance(){
+        if (!OnlyOne.instance){
+            OnlyOne.instance = new OnlyOne('the only one');
+        }
+        return OnlyOne.instance;
+    }
+}
+
+// let wrong = new OnlyOne('only one');
+let right = OnlyOne.getInstance();
+console.log(right.name);
+// it is readonly properties
+// right.name = 'something else';
